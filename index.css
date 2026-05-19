@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base ─────────────────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: #020B18;
+  color: #F8FAFF;
+  overflow-x: hidden;
+}
+
+.light body {
+  background-color: #F0F4FF;
+  color: #050F1F;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #020B18;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00D4FF, #00FF88);
+  border-radius: 3px;
+}
+
+/* ─── Selection ─────────────────────────────────────────── */
+::selection {
+  background: #00D4FF33;
+  color: #00D4FF;
+}
+
+/* ─── Glass ─────────────────────────────────────────────── */
+@layer components {
+  .glass {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+  .glass-light {
+    @apply bg-white/80 backdrop-blur-md border border-white/60;
+  }
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-primary to-accent text-dark-900 font-semibold rounded-lg
+           hover:opacity-90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/30;
+  }
+  .btn-outline {
+    @apply px-6 py-3 border border-primary/50 text-primary font-semibold rounded-lg
+           hover:bg-primary/10 transition-all duration-300 hover:scale-105;
+  }
+  .section-heading {
+    @apply text-4xl md:text-5xl font-bold font-outfit;
+  }
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10;
+  }
+}
+
+/* ─── Cyber Grid Background ─────────────────────────────── */
+.cyber-grid-bg {
+  background-image: 
+    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* ─── Blob animation ────────────────────────────────────── */
+.blob {
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  animation: morphBlob 8s ease-in-out infinite;
+  filter: blur(40px);
+  opacity: 0.15;
+}
+
+@keyframes morphBlob {
+  0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; transform: translate(0, 0) scale(1); }
+  25%       { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; transform: translate(20px, -30px) scale(1.05); }
+  50%       { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; transform: translate(-15px, 15px) scale(0.95); }
+  75%       { border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%; transform: translate(10px, 20px) scale(1.02); }
+}
+
+/* ─── Typing cursor ─────────────────────────────────────── */
+.typing-cursor::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+  color: #00D4FF;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ─── Skill bar ─────────────────────────────────────────── */
+.skill-bar-fill {
+  transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Neon glow ─────────────────────────────────────────── */
+.neon-glow {
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3), 0 0 60px rgba(0, 212, 255, 0.1);
+}
+.neon-glow-green {
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.3), 0 0 60px rgba(0, 255, 136, 0.1);
+}
+
+/* ─── WhatsApp float ─────────────────────────────────────── */
+.whatsapp-pulse {
+  animation: waPulse 2s ease-in-out infinite;
+}
+
+@keyframes waPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+  50%       { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+}
+
+/* ─── Scroll progress ─────────────────────────────────────── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #00D4FF, #00FF88);
+  z-index: 9999;
+  transform-origin: left;
+}
+
+/* ─── Toast ─────────────────────────────────────────────── */
+.toast {
+  animation: slideInRight 0.4s ease, fadeOut 0.4s ease 2.6s forwards;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0);   opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; transform: translateX(30px); }
+}
+
+/* ─── Light mode overrides ─────────────────────────────── */
+.light .glass {
+  background: rgba(255,255,255,0.7);
+  border-color: rgba(0, 212, 255, 0.15);
+}
+
+.light body {
+  background-color: #EEF2FF;
+  color: #050F1F;
+}
+
+.light ::-webkit-scrollbar-track {
+  background: #EEF2FF;
+}
