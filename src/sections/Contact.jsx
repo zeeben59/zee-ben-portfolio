@@ -62,7 +62,7 @@ export default function Contact({ addToast }) {
       setForm(INIT)
     } catch (err) {
       // Log full error to console for debugging and show user-friendly message
-      // eslint-disable-next-line no-console
+       
       console.error('EmailJS send error:', err)
       addToast({ type: 'error', message: 'Failed to send. Check console for details and ensure EmailJS keys are configured.' })
     } finally {
