@@ -104,7 +104,7 @@ export default function Testimonials() {
               className="glass rounded-3xl p-8 md:p-12 text-center relative overflow-hidden"
             >
               {/* Quote mark */}
-              <div className="absolute top-6 left-8 text-8xl font-serif leading-none text-primary/10 select-none">"</div>
+              <div className="absolute top-6 left-8 text-8xl font-serif leading-none text-primary/10 select-none">&ldquo;</div>
 
               {/* Stars */}
               <div className="flex justify-center gap-1 mb-6">
@@ -115,7 +115,7 @@ export default function Testimonials() {
 
               {/* Text */}
               <p className="text-white/75 text-lg md:text-xl leading-relaxed italic mb-8 relative z-10 max-w-2xl mx-auto">
-                "{current.text}"
+                &ldquo;{current.text}&rdquo;
               </p>
 
               {/* Author */}
