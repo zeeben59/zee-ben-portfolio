@@ -1,5 +1,4 @@
-import { motion } from 'framer-motion'
-import { RiDownloadLine, RiArrowRightLine, RiGithubLine, RiLinkedinLine, RiTwitterXLine } from 'react-icons/ri'
+import { RiGithubLine, RiLinkedinLine, RiTwitterXLine } from 'react-icons/ri'
 import { useTypingAnimation } from '../hooks/useScrollAnimation'
 
 const TYPING_WORDS = [
@@ -11,19 +10,10 @@ const TYPING_WORDS = [
 ]
 
 const SOCIALS = [
-  { icon: RiGithubLine,   href: 'https://github.com/',   label: 'GitHub'   },
+  { icon: RiGithubLine, href: 'https://github.com/', label: 'GitHub' },
   { icon: RiLinkedinLine, href: 'https://linkedin.com/', label: 'LinkedIn' },
-  { icon: RiTwitterXLine, href: 'https://x.com/',        label: 'Twitter'  },
+  { icon: RiTwitterXLine, href: 'https://x.com/', label: 'Twitter' },
 ]
-
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.15 } },
-}
-const fadeUp = {
-  hidden:  { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
-}
 
 export default function Hero() {
   const typed = useTypingAnimation(TYPING_WORDS, 80, 2200)
@@ -35,8 +25,9 @@ export default function Hero() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-center">
           {/* Left text column */}
           <div className="order-2 sm:order-1">
-            <p className="text-sm text-gray-400 mb-2">Hi, I'm Monwuba Benedict Okechukwu!</p>
+            <p className="text-sm text-gray-400 mb-2">Hi, I&apos;m Monwuba Benedict Okechukwu!</p>
             <h2 className="text-4xl sm:text-5xl font-semibold mb-4">WEB <span className="gradient-text">DESIGNER</span></h2>
+            <p className="text-primary/80 text-sm mb-3 font-mono">{typed}</p>
             <p className="text-gray-400 max-w-xl leading-relaxed mb-6">
               I craft visually stunning and user-friendly websites. With a keen eye for design and modern web development, I transform ideas into beautiful digital experiences.
             </p>
@@ -47,9 +38,11 @@ export default function Hero() {
             </div>
 
             <div className="mt-6 flex gap-4 text-gray-400">
-              <RiGithubLine size={20} />
-              <RiLinkedinLine size={20} />
-              <RiTwitterXLine size={20} />
+              {SOCIALS.map(({ icon: Icon, href, label }) => (
+                <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
+                  <Icon size={20} />
+                </a>
+              ))}
             </div>
           </div>
 

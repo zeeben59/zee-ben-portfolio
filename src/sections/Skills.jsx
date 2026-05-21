@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import {
-  RiReactjsLine, RiJavascriptLine, RiHtml5Line, RiCss3Line,
-  RiGithubLine, RiDatabase2Line, RiPhpFill,
+  RiReactjsLine, RiJavascriptLine, RiHtml5Line,
+  RiGithubLine, RiPhpFill,
 } from 'react-icons/ri'
 import {
   SiNodedotjs, SiMysql, SiOpenai,

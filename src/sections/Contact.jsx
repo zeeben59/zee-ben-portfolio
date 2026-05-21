@@ -84,10 +84,10 @@ export default function Contact({ addToast }) {
         >
           <span className="font-mono text-primary text-sm tracking-widest uppercase">Get in touch</span>
           <h2 className="section-heading mt-2">
-            Let's <span className="gradient-text">Work Together</span>
+            Let&apos;s <span className="gradient-text">Work Together</span>
           </h2>
           <p className="text-white/50 max-w-xl mx-auto mt-4">
-            Have a project in mind? I'd love to hear about it. Send me a message and let's make something great.
+            Have a project in mind? I&apos;d love to hear about it. Send me a message and let&apos;s make something great.
           </p>
         </motion.div>
 

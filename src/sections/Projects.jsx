@@ -63,12 +63,12 @@ export default function Projects() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <span className="font-mono text-primary text-sm tracking-widest uppercase">What I've built</span>
+          <span className="font-mono text-primary text-sm tracking-widest uppercase">What I&apos;ve built</span>
           <h2 className="section-heading mt-2">
             Featured <span className="gradient-text">Projects</span>
           </h2>
           <p className="text-white/50 max-w-xl mx-auto mt-4">
-            A selection of real-world projects I've designed, built, and shipped.
+            A selection of real-world projects I&apos;ve designed, built, and shipped.
           </p>
         </motion.div>
 
