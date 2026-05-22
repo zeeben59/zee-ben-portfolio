@@ -24,7 +24,7 @@ const PROJECTS = [
     category: 'Web Design',
     desc:
       'Corporate site and resource center for antivirus & cybersecurity products. Marketing pages, resources, and product listings.',
-    image: '/kaspersky.jpg',
+    image: '/image.png',
     color: '#0EA5A4',
     tech: ['Marketing Site', 'CMS', 'Responsive Design'],
     live: 'https://www.kaspersky.com/',
@@ -37,7 +37,7 @@ const PROJECTS = [
     category: 'Web App',
     desc:
       'DeepL is a leading translation platform offering fast, accurate machine translation and related tools for individuals and businesses.',
-    image: '/deepl.jpg',
+    image: '/transla.png',
     color: '#2563EB',
     tech: ['Web App', 'Translation API', 'SaaS'],
     live: 'https://www.deepl.com/',
