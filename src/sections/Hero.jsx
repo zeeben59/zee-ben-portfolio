@@ -17,6 +17,10 @@ const SOCIALS = [
 
 export default function Hero() {
   const typed = useTypingAnimation(TYPING_WORDS, 80, 2200)
+  const scrollToSection = (selector) => {
+    const el = document.querySelector(selector)
+    if (el) el.scrollIntoView({ behavior: 'smooth' })
+  }
 
   return (
     <section id="home" className="relative min-h-screen overflow-hidden">
@@ -33,8 +37,8 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
-              <button className="btn-primary">Projects</button>
-              <button className="btn-outline">Hire Me</button>
+              <button onClick={() => scrollToSection('#projects')} className="btn-primary">Projects</button>
+              <button onClick={() => scrollToSection('#contact')} className="btn-outline">Hire Me</button>
             </div>
 
             <div className="mt-6 flex gap-4 text-gray-400">
