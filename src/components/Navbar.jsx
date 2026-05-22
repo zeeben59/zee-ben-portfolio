@@ -51,7 +51,7 @@ export default function Navbar({ darkMode, toggleDarkMode }) {
               <RiCodeSSlashLine className="text-dark-900 text-xl" />
             </div>
             <span className="font-mono font-bold text-lg gradient-text group-hover:opacity-80 transition-opacity">
-              Monwuba Benedict Okechukwu<span className="text-primary">.</span>
+              Monwuba Benedict .O.<span className="text-primary"></span>
             </span>
           </button>
 
