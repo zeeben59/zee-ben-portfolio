@@ -11,7 +11,7 @@ const PROJECTS = [
     category: 'Web Design',
     desc:
       'A membership and course platform for nail technicians featuring events, accredited courses, a shop, and member resources. Responsive design with e-commerce and content-focused UX.',
-    image: null,
+    image: '/image.png',
     color: '#0EA5A4',
     tech: ['WordPress', 'WooCommerce', 'PHP', 'Responsive Design'],
     live: 'https://thenailtech.org',
@@ -24,7 +24,7 @@ const PROJECTS = [
     category: 'Web Design',
     desc:
       'Corporate site and resource center for antivirus & cybersecurity products. Marketing pages, resources, and product listings.',
-    image: '/image.png',
+    image: '/kaspersky.png',
     color: '#0EA5A4',
     tech: ['Marketing Site', 'CMS', 'Responsive Design'],
     live: 'https://www.kaspersky.com/',

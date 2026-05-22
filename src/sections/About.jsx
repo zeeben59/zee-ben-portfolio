@@ -20,7 +20,7 @@ export default function About() {
           </div>
 
           <div className="flex items-center justify-center md:justify-end">
-            <img src="public/profile.jpg" alt="Monwuba Benedict Okechukwu" className="w-44 h-44 md:w-56 md:h-56 rounded-full object-cover shadow-lg" />
+            <img src="/profile.jpg" alt="Monwuba Benedict Okechukwu" className="w-44 h-44 md:w-56 md:h-56 rounded-full object-cover shadow-lg" />
           </div>
         </div>
       </div>
