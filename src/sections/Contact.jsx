@@ -8,14 +8,14 @@ import {
 import { EMAILJS_CONFIG } from '../emailjs'
 
 const CONTACT_INFO = [
-  { icon: RiMailLine,    label: 'Email',    value: 'monwubabenedict07@gmail.com',   href: 'mailto:monwubabenedict07@gmail.com'      },
-  { icon: RiWhatsappLine,label: 'WhatsApp', value: '+234 706 631 3789',           href: 'https://wa.me/2347066313789'         },
-  { icon: RiMapPinLine,  label: 'Location', value: 'Nigeria, West Africa',        href: null                                   },
+  { icon: RiMailLine, label: 'Email', value: 'monwubabenedict07@gmail.com', href: 'mailto:monwubabenedict07@gmail.com' },
+  { icon: RiWhatsappLine, label: 'WhatsApp', value: '+234 706 631 3789', href: 'https://wa.me/2347066313789' },
+  { icon: RiMapPinLine, label: 'Location', value: 'Nigeria, West Africa', href: null },
 ]
 const SOCIALS = [
-  { icon: RiGithubLine,   href: 'https://github.com/',   label: 'GitHub'   },
+  { icon: RiGithubLine, href: 'https://github.com/', label: 'GitHub' },
   { icon: RiLinkedinLine, href: 'https://linkedin.com/', label: 'LinkedIn' },
-  { icon: RiTwitterXLine, href: 'https://x.com/',        label: 'Twitter'  },
+  { icon: RiTwitterXLine, href: 'https://x.com/', label: 'Twitter' },
 ]
 
 const INIT = { name: '', email: '', message: '' }
@@ -62,7 +62,7 @@ export default function Contact({ addToast }) {
       setForm(INIT)
     } catch (err) {
       // Log full error to console for debugging and show user-friendly message
-       
+
       console.error('EmailJS send error:', err)
       addToast({ type: 'error', message: 'Failed to send. Check console for details and ensure EmailJS keys are configured.' })
     } finally {
@@ -178,10 +178,9 @@ export default function Contact({ addToast }) {
                   name="from_name"
                   value={form.name}
                   onChange={(e) => handleChange({ target: { name: 'name', value: e.target.value } })}
-                  placeholder="Chukwuemeka Obi"
-                  className={`w-full px-4 py-3 rounded-xl bg-white/5 border text-white placeholder-white/25 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all ${
-                    errors.name ? 'border-red-500/60' : 'border-white/10 focus:border-primary/50'
-                  }`}
+                  placeholder="fullname ..."
+                  className={`w-full px-4 py-3 rounded-xl bg-white/5 border text-white placeholder-white/25 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all ${errors.name ? 'border-red-500/60' : 'border-white/10 focus:border-primary/50'
+                    }`}
                 />
                 {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
               </div>
@@ -195,9 +194,8 @@ export default function Contact({ addToast }) {
                   value={form.email}
                   onChange={(e) => handleChange({ target: { name: 'email', value: e.target.value } })}
                   placeholder="you@example.com"
-                  className={`w-full px-4 py-3 rounded-xl bg-white/5 border text-white placeholder-white/25 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all ${
-                    errors.email ? 'border-red-500/60' : 'border-white/10 focus:border-primary/50'
-                  }`}
+                  className={`w-full px-4 py-3 rounded-xl bg-white/5 border text-white placeholder-white/25 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all ${errors.email ? 'border-red-500/60' : 'border-white/10 focus:border-primary/50'
+                    }`}
                 />
                 {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
               </div>
@@ -211,9 +209,8 @@ export default function Contact({ addToast }) {
                   onChange={(e) => handleChange({ target: { name: 'message', value: e.target.value } })}
                   rows={6}
                   placeholder="Tell me about your project, goals, or any questions you have..."
-                  className={`w-full px-4 py-3 rounded-xl bg-white/5 border text-white placeholder-white/25 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none ${
-                    errors.message ? 'border-red-500/60' : 'border-white/10 focus:border-primary/50'
-                  }`}
+                  className={`w-full px-4 py-3 rounded-xl bg-white/5 border text-white placeholder-white/25 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none ${errors.message ? 'border-red-500/60' : 'border-white/10 focus:border-primary/50'
+                    }`}
                 />
                 {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message}</p>}
               </div>
@@ -224,11 +221,10 @@ export default function Contact({ addToast }) {
                 disabled={loading}
                 whileHover={!loading ? { scale: 1.02 } : {}}
                 whileTap={!loading ? { scale: 0.98 } : {}}
-                className={`w-full py-4 rounded-xl font-semibold text-dark-900 flex items-center justify-center gap-3 transition-all duration-300 ${
-                  loading
+                className={`w-full py-4 rounded-xl font-semibold text-dark-900 flex items-center justify-center gap-3 transition-all duration-300 ${loading
                     ? 'bg-white/20 cursor-not-allowed text-white/60'
                     : 'bg-gradient-to-r from-primary to-accent shadow-lg shadow-primary/30 hover:shadow-primary/50'
-                }`}
+                  }`}
               >
                 {loading ? (
                   <>
