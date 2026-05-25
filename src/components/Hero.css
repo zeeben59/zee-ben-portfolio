@@ -1,0 +1,163 @@
+/* Hero Card Layout */
+.hero-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2rem;
+  overflow: hidden;
+  max-width: 1200px;
+  width: 100%;
+  min-height: 500px;
+  box-shadow:
+    0 0 80px rgba(139, 92, 246, 0.06),
+    0 25px 50px -12px rgba(0, 0, 0, 0.4);
+}
+
+.hero-card-content {
+  flex: 1;
+  padding: 3.5rem 3rem;
+  z-index: 2;
+}
+
+.hero-card-image {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+  overflow: hidden;
+}
+
+/* Decorative Blob Shape */
+.hero-blob {
+  position: absolute;
+  width: 110%;
+  height: 110%;
+  top: -5%;
+  left: -5%;
+  z-index: 0;
+}
+
+.hero-blob-shape {
+  fill: #7c3aed;
+  opacity: 0.35;
+  filter: blur(2px);
+}
+
+.hero-profile-img {
+  position: relative;
+  z-index: 1;
+  width: 85%;
+  max-width: 420px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 1.5rem;
+  filter: grayscale(20%);
+  transition: filter 0.6s ease, transform 0.6s ease;
+}
+
+.hero-card:hover .hero-profile-img {
+  filter: grayscale(0%);
+  transform: scale(1.03);
+}
+
+/* Subtitle Tag */
+.hero-subtitle-tag {
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  border-radius: 0.5rem;
+  background: rgba(139, 92, 246, 0.15);
+  color: #a78bfa;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+/* Heading */
+.hero-heading {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #f3f4f6;
+  margin-bottom: 1.25rem;
+}
+
+.hero-heading .highlight {
+  background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Description */
+.hero-description {
+  font-size: 1.05rem;
+  color: #9ca3af;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  max-width: 480px;
+  font-weight: 300;
+}
+
+/* Button Row */
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Responsive: stack on mobile */
+@media (max-width: 768px) {
+  .hero-card {
+    flex-direction: column;
+    min-height: auto;
+    border-radius: 1.5rem;
+    margin: 0 1rem;
+  }
+
+  .hero-card-content {
+    padding: 2.5rem 1.75rem 1.5rem;
+    text-align: center;
+  }
+
+  .hero-card-image {
+    min-height: 300px;
+    width: 100%;
+  }
+
+  .hero-description {
+    max-width: 100%;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-profile-img {
+    width: 70%;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-card-content {
+    padding: 2rem 1.25rem 1rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-buttons > * {
+    width: 100%;
+  }
+}

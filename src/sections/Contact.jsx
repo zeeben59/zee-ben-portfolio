@@ -15,7 +15,7 @@ const CONTACT_INFO = [
 const SOCIALS = [
   { icon: RiGithubLine, href: 'https://github.com/', label: 'GitHub' },
   { icon: RiLinkedinLine, href: 'https://linkedin.com/', label: 'LinkedIn' },
-  { icon: RiTwitterXLine, href: 'https://x.com/', label: 'Twitter' },
+  { icon: RiTwitterXLine, href: 'https://x.com/', label: 'Twitter/X' },
 ]
 
 const INIT = { name: '', email: '', message: '' }
@@ -38,8 +38,8 @@ export default function Contact({ addToast }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setForm(f => ({ ...f, [name]: value }))
-    if (errors[name]) setErrors(er => ({ ...er, [name]: '' }))
+    setForm((f) => ({ ...f, [name]: value }))
+    if (errors[name]) setErrors((er) => ({ ...er, [name]: '' }))
   }
 
   const handleSubmit = async (e) => {
@@ -48,7 +48,6 @@ export default function Contact({ addToast }) {
 
     setLoading(true)
     try {
-      // Quick config check
       if (!EMAILJS_CONFIG.PUBLIC_KEY || EMAILJS_CONFIG.PUBLIC_KEY.includes('YOUR')) {
         throw new Error('EmailJS public key not configured. Please set EMAILJS_CONFIG.PUBLIC_KEY in src/emailjs.js')
       }
@@ -58,11 +57,9 @@ export default function Contact({ addToast }) {
         formRef.current,
         EMAILJS_CONFIG.PUBLIC_KEY,
       )
-      addToast({ type: 'success', message: "Message sent! I'll reply within 24 hours ✅" })
+      addToast({ type: 'success', message: "Message sent! I'll reply within 24 hours." })
       setForm(INIT)
     } catch (err) {
-      // Log full error to console for debugging and show user-friendly message
-
       console.error('EmailJS send error:', err)
       addToast({ type: 'error', message: 'Failed to send. Check console for details and ensure EmailJS keys are configured.' })
     } finally {
@@ -71,11 +68,10 @@ export default function Contact({ addToast }) {
   }
 
   return (
-    <section id="contact" className="py-24 px-4 relative">
+    <section id="contact" className="py-24 px-4 relative" aria-labelledby="contact-heading">
       <div className="absolute inset-0 cyber-grid-bg opacity-30 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -83,7 +79,7 @@ export default function Contact({ addToast }) {
           className="text-center mb-16"
         >
           <span className="font-mono text-primary text-sm tracking-widest uppercase">Get in touch</span>
-          <h2 className="section-heading mt-2">
+          <h2 className="section-heading mt-2" id="contact-heading">
             Let&apos;s <span className="gradient-text">Work Together</span>
           </h2>
           <p className="text-white/50 max-w-xl mx-auto mt-4">
@@ -92,8 +88,6 @@ export default function Contact({ addToast }) {
         </motion.div>
 
         <div className="grid lg:grid-cols-5 gap-10">
-
-          {/* Info panel */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -101,7 +95,7 @@ export default function Contact({ addToast }) {
             transition={{ duration: 0.7 }}
             className="lg:col-span-2 flex flex-col gap-6"
           >
-            {CONTACT_INFO.map(item => (
+            {CONTACT_INFO.map((item) => (
               <div key={item.label} className="glass rounded-2xl p-5 flex items-start gap-4 card-hover">
                 <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center text-primary text-xl flex-shrink-0">
                   <item.icon />
@@ -119,19 +113,18 @@ export default function Contact({ addToast }) {
               </div>
             ))}
 
-            {/* WhatsApp CTA */}
             <a
               href="https://wa.me/2347066313789"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-3 py-4 rounded-2xl bg-[#25D366]/15 border border-[#25D366]/30 text-[#25D366] font-semibold hover:bg-[#25D366]/25 transition-all duration-300 group"
+              aria-label="Chat on WhatsApp"
             >
               <RiWhatsappLine className="text-2xl group-hover:scale-110 transition-transform" />
               Chat on WhatsApp
             </a>
 
-            {/* Socials */}
-            <div className="flex gap-3">
+            <div className="flex gap-3" aria-label="Social links">
               {SOCIALS.map(({ icon: Icon, href, label }) => (
                 <motion.a
                   key={label}
@@ -147,19 +140,17 @@ export default function Contact({ addToast }) {
               ))}
             </div>
 
-            {/* Availability badge */}
             <div className="glass rounded-2xl p-5 border border-accent/20">
               <div className="flex items-center gap-2 mb-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />
                 <span className="text-accent font-semibold text-sm">Currently Available</span>
               </div>
               <p className="text-white/50 text-sm">
-                Open to full-time, contract, and freelance projects. Typical response time: &lt;24 hours.
+                Open to full-time, contract, and freelance projects. Typical response time: less than 24 hours.
               </p>
             </div>
           </motion.div>
 
-          {/* Form */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -167,69 +158,71 @@ export default function Contact({ addToast }) {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="lg:col-span-3"
           >
-            <form ref={formRef} onSubmit={handleSubmit} noValidate className="glass rounded-3xl p-8 space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit} noValidate className="glass rounded-3xl p-8 space-y-6" aria-label="Contact form">
               <h3 className="font-bold text-2xl mb-2">Send a Message</h3>
 
-              {/* Name */}
               <div>
-                <label className="block text-sm font-medium text-white/60 mb-2">Your Name *</label>
+                <label htmlFor="contact-name" className="block text-sm font-medium text-white/60 mb-2">Your Name *</label>
                 <input
+                  id="contact-name"
                   type="text"
                   name="from_name"
                   value={form.name}
                   onChange={(e) => handleChange({ target: { name: 'name', value: e.target.value } })}
-                  placeholder="fullname ..."
-                  className={`w-full px-4 py-3 rounded-xl bg-white/5 border text-white placeholder-white/25 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all ${errors.name ? 'border-red-500/60' : 'border-white/10 focus:border-primary/50'
-                    }`}
+                  placeholder="Full name"
+                  autoComplete="name"
+                  aria-invalid={Boolean(errors.name)}
+                  aria-describedby={errors.name ? 'name-error' : undefined}
+                  className={`w-full px-4 py-3 rounded-xl bg-white/5 border text-white placeholder-white/25 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all ${errors.name ? 'border-red-500/60' : 'border-white/10 focus:border-primary/50'}`}
                 />
-                {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
+                {errors.name && <p id="name-error" className="text-red-400 text-xs mt-1">{errors.name}</p>}
               </div>
 
-              {/* Email */}
               <div>
-                <label className="block text-sm font-medium text-white/60 mb-2">Email Address *</label>
+                <label htmlFor="contact-email" className="block text-sm font-medium text-white/60 mb-2">Email Address *</label>
                 <input
+                  id="contact-email"
                   type="email"
                   name="from_email"
                   value={form.email}
                   onChange={(e) => handleChange({ target: { name: 'email', value: e.target.value } })}
                   placeholder="you@example.com"
-                  className={`w-full px-4 py-3 rounded-xl bg-white/5 border text-white placeholder-white/25 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all ${errors.email ? 'border-red-500/60' : 'border-white/10 focus:border-primary/50'
-                    }`}
+                  autoComplete="email"
+                  aria-invalid={Boolean(errors.email)}
+                  aria-describedby={errors.email ? 'email-error' : undefined}
+                  className={`w-full px-4 py-3 rounded-xl bg-white/5 border text-white placeholder-white/25 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all ${errors.email ? 'border-red-500/60' : 'border-white/10 focus:border-primary/50'}`}
                 />
-                {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
+                {errors.email && <p id="email-error" className="text-red-400 text-xs mt-1">{errors.email}</p>}
               </div>
 
-              {/* Message */}
               <div>
-                <label className="block text-sm font-medium text-white/60 mb-2">Message *</label>
+                <label htmlFor="contact-message" className="block text-sm font-medium text-white/60 mb-2">Message *</label>
                 <textarea
+                  id="contact-message"
                   name="message"
                   value={form.message}
                   onChange={(e) => handleChange({ target: { name: 'message', value: e.target.value } })}
                   rows={6}
                   placeholder="Tell me about your project, goals, or any questions you have..."
-                  className={`w-full px-4 py-3 rounded-xl bg-white/5 border text-white placeholder-white/25 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none ${errors.message ? 'border-red-500/60' : 'border-white/10 focus:border-primary/50'
-                    }`}
+                  aria-invalid={Boolean(errors.message)}
+                  aria-describedby={errors.message ? 'message-error' : undefined}
+                  className={`w-full px-4 py-3 rounded-xl bg-white/5 border text-white placeholder-white/25 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none ${errors.message ? 'border-red-500/60' : 'border-white/10 focus:border-primary/50'}`}
                 />
-                {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message}</p>}
+                {errors.message && <p id="message-error" className="text-red-400 text-xs mt-1">{errors.message}</p>}
               </div>
 
-              {/* Submit */}
               <motion.button
                 type="submit"
                 disabled={loading}
                 whileHover={!loading ? { scale: 1.02 } : {}}
                 whileTap={!loading ? { scale: 0.98 } : {}}
-                className={`w-full py-4 rounded-xl font-semibold text-dark-900 flex items-center justify-center gap-3 transition-all duration-300 ${loading
-                    ? 'bg-white/20 cursor-not-allowed text-white/60'
-                    : 'bg-gradient-to-r from-primary to-accent shadow-lg shadow-primary/30 hover:shadow-primary/50'
-                  }`}
+                className={`w-full py-4 rounded-xl font-semibold text-dark-900 flex items-center justify-center gap-3 transition-all duration-300 ${loading ? 'bg-white/20 cursor-not-allowed text-white/60' : 'bg-gradient-to-r from-primary to-accent shadow-lg shadow-primary/30 hover:shadow-primary/50'}`}
+                aria-label="Send contact message"
               >
                 {loading ? (
                   <>
                     <RiLoader4Line className="animate-spin text-xl" />
-                    Sending…
+                    Sending...
                   </>
                 ) : (
                   <>
@@ -239,9 +232,7 @@ export default function Contact({ addToast }) {
                 )}
               </motion.button>
 
-              <p className="text-white/30 text-xs text-center">
-                Your data is never shared. Powered by EmailJS.
-              </p>
+              <p className="text-white/30 text-xs text-center">Your data is never shared. Powered by EmailJS.</p>
             </form>
           </motion.div>
         </div>

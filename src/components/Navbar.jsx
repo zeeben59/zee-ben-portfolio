@@ -3,18 +3,18 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { RiMenuLine, RiCloseLine, RiCodeSSlashLine } from 'react-icons/ri'
 
 const NAV_LINKS = [
-  { label: 'About',        href: '#about'        },
-  { label: 'Skills',       href: '#skills'       },
-  { label: 'Services',     href: '#services'     },
-  { label: 'Projects',     href: '#projects'     },
+  { label: 'About', href: '#about' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Services', href: '#services' },
+  { label: 'Projects', href: '#projects' },
   { label: 'Testimonials', href: '#testimonials' },
-  { label: 'Contact',      href: '#contact'      },
+  { label: 'Contact', href: '#contact' },
 ]
 
 export default function Navbar({ darkMode, toggleDarkMode }) {
-  const [scrolled, setScrolled]   = useState(false)
-  const [menuOpen, setMenuOpen]   = useState(false)
-  const [active, setActive]       = useState('')
+  const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [active, setActive] = useState('')
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30)
@@ -33,34 +33,33 @@ export default function Navbar({ darkMode, toggleDarkMode }) {
     <>
       <motion.nav
         initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0,  opacity: 1  }}
+        animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? 'glass py-3 shadow-lg shadow-black/30'
-            : 'bg-transparent py-5'
+          scrolled ? 'glass py-3 shadow-lg shadow-black/30' : 'bg-transparent py-5'
         }`}
+        aria-label="Primary"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Logo */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="flex items-center gap-2 group"
+            aria-label="Back to top"
           >
             <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/30">
               <RiCodeSSlashLine className="text-dark-900 text-xl" />
             </div>
             <span className="font-mono font-bold text-lg gradient-text group-hover:opacity-80 transition-opacity">
-              Monwuba Benedict .O.<span className="text-primary"></span>
+              Monwuba Benedict .O.
             </span>
           </button>
 
-          {/* Desktop Links */}
           <ul className="hidden md:flex items-center gap-1">
-            {NAV_LINKS.map(link => (
+            {NAV_LINKS.map((link) => (
               <li key={link.href}>
                 <button
                   onClick={() => handleNavClick(link.href)}
+                  aria-current={active === link.href ? 'page' : undefined}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                     active === link.href
                       ? 'text-primary bg-primary/10'
@@ -73,30 +72,28 @@ export default function Navbar({ darkMode, toggleDarkMode }) {
             ))}
           </ul>
 
-          {/* Right actions */}
           <div className="flex items-center gap-3">
-            {/* Theme toggle */}
             <button
               onClick={toggleDarkMode}
               className="w-10 h-10 rounded-full glass flex items-center justify-center text-lg hover:scale-110 transition-transform"
               aria-label="Toggle theme"
             >
-              {darkMode ? '☀️' : '🌙'}
+              {darkMode ? 'Sun' : 'Moon'}
             </button>
 
-            {/* Hire Me button */}
             <button
               onClick={() => handleNavClick('#contact')}
               className="hidden md:block btn-primary text-sm py-2 px-4"
+              aria-label="Go to contact section"
             >
               Hire Me
             </button>
 
-            {/* Mobile menu button */}
             <button
-              onClick={() => setMenuOpen(o => !o)}
+              onClick={() => setMenuOpen((o) => !o)}
               className="md:hidden w-10 h-10 rounded-full glass flex items-center justify-center text-xl hover:scale-110 transition-transform"
               aria-label="Toggle menu"
+              aria-expanded={menuOpen}
             >
               {menuOpen ? <RiCloseLine /> : <RiMenuLine />}
             </button>
@@ -104,7 +101,6 @@ export default function Navbar({ darkMode, toggleDarkMode }) {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -134,6 +130,7 @@ export default function Navbar({ darkMode, toggleDarkMode }) {
                 <button
                   onClick={() => handleNavClick('#contact')}
                   className="w-full mt-2 btn-primary text-center"
+                  aria-label="Go to contact section"
                 >
                   Hire Me
                 </button>

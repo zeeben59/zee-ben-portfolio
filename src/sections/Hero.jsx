@@ -12,36 +12,49 @@ const TYPING_WORDS = [
 const SOCIALS = [
   { icon: RiGithubLine, href: 'https://github.com/', label: 'GitHub' },
   { icon: RiLinkedinLine, href: 'https://linkedin.com/', label: 'LinkedIn' },
-  { icon: RiTwitterXLine, href: 'https://x.com/', label: 'Twitter' },
+  { icon: RiTwitterXLine, href: 'https://x.com/', label: 'Twitter/X' },
 ]
 
 export default function Hero() {
   const typed = useTypingAnimation(TYPING_WORDS, 80, 2200)
+
   const scrollToSection = (selector) => {
     const el = document.querySelector(selector)
     if (el) el.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
-    <section id="home" className="relative min-h-screen overflow-hidden">
-      {/* Unified responsive hero: stacks on mobile and shows two-column on wider screens */}
+    <section id="home" className="relative min-h-screen overflow-hidden" aria-label="Hero section">
       <div className="max-w-7xl mx-auto px-6 py-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-center">
-          {/* Left text column */}
           <div className="order-2 sm:order-1">
             <p className="text-sm text-gray-400 mb-2">Hi, I&apos;m Monwuba Benedict Okechukwu!</p>
-            <h2 className="text-4xl sm:text-5xl font-semibold mb-4">WEB <span className="gradient-text">DESIGNER</span></h2>
-            <p className="text-primary/80 text-sm mb-3 font-mono">{typed}</p>
+            <h1 className="text-4xl sm:text-5xl font-semibold mb-4">
+              WEB <span className="gradient-text">DESIGNER</span>
+            </h1>
+            <p className="text-primary/80 text-sm mb-3 font-mono" aria-live="polite">{typed}</p>
             <p className="text-gray-400 max-w-xl leading-relaxed mb-6">
               I craft visually stunning and user-friendly websites. With a keen eye for design and modern web development, I transform ideas into beautiful digital experiences.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
-              <button onClick={() => scrollToSection('#projects')} className="btn-primary">Projects</button>
-              <button onClick={() => scrollToSection('#contact')} className="btn-outline">Hire Me</button>
+              <button
+                onClick={() => scrollToSection('#projects')}
+                className="btn-primary"
+                aria-label="View projects section"
+              >
+                Projects
+              </button>
+              <button
+                onClick={() => scrollToSection('#contact')}
+                className="btn-outline"
+                aria-label="Go to contact section"
+              >
+                Hire Me
+              </button>
             </div>
 
-            <div className="mt-6 flex gap-4 text-gray-400">
+            <div className="mt-6 flex gap-4 text-gray-400" aria-label="Social links">
               {SOCIALS.map(({ icon: Icon, href, label }) => (
                 <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
                   <Icon size={20} />
@@ -50,9 +63,12 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right visual (profile) */}
           <div className="order-1 sm:order-2 flex items-center justify-center">
-            <div className="w-56 h-56 sm:w-[420px] sm:h-[520px] rounded-full sm:rounded-[36px] overflow-hidden profile-img-desktop profile-img shadow-xl" />
+            <div
+              className="w-56 h-56 sm:w-[420px] sm:h-[520px] rounded-full sm:rounded-[36px] overflow-hidden profile-img-desktop profile-img shadow-xl"
+              role="img"
+              aria-label="Portrait of Zee Ben"
+            />
           </div>
         </div>
       </div>
